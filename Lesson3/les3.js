@@ -27,12 +27,15 @@ console.log(countBasketPrice());
 
 // 4. -----------------------------------------------
 
-let i = 0;
-for(;;){
+function consoleOut(i){
     console.log(i);
-    if(i == 10) break; 
-    i++;
+    return 8;
 }
+
+let i = 0;
+for(i = 0;i <= consoleOut(i);i++){}
+    
+
 
 //5. ------------------------------------------------
 
