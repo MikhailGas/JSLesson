@@ -48,3 +48,7 @@ for(let i = 0; i < 20; i++){
 }
 
 
+let num = 425;
+
+let string = '' + num;
+console.log('Сотни: ' + string[0] + ', Десятки: ' + string[1] + ', Единицы: ' + string[2]);
