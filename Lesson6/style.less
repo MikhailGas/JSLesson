@@ -1,0 +1,77 @@
+@width: 70px;
+@height: 70px;
+
+@black: #000000;
+@white: #ffffff;
+
+@size: @width / 2;
+body{
+    height: 1500px;
+}
+
+.black{
+    background: white;
+    padding: 5px;
+    color:black;
+    font-weight: bold;
+    font-size: @size;
+}
+.white{
+    background: black;
+    padding: 5px;
+    color:white;
+    text-shadow: 1px 1px 1px black;
+    font-size: @size;
+}
+.red{
+    background-color: red;
+}
+.timer1, .timer2{
+    width: 40px;
+    height: 30px;
+    border: 1px solid black;
+    text-align: center;
+    vertical-align: middle;
+}
+
+span{
+    
+}
+.chessboard{
+    border: 1px solid @black;
+    border-collapse: collapse;
+    &__row{
+        height: @height;
+        &:first-child{
+            height: @height / 2;
+        }
+        &:last-child{
+            height: @height / 2;
+        }
+        
+    }
+    &__cell{
+        text-align: center;
+        vertical-align: middle;
+        width: @width;
+        &:first-child{
+            width: @width / 2;
+        }
+        &:last-child{
+            width: @width / 2;
+        }
+        
+        &_white{
+            border: 1px solid @black;
+            background: @white;
+            
+        }
+        &_black{
+            border: 1px solid @black;
+            background: @black;
+            
+        }
+        
+    }
+    
+}
