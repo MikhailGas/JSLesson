@@ -7,6 +7,8 @@
 @size: @width / 2;
 body{
     height: 1500px;
+    
+    
 }
 
 .black{
@@ -26,16 +28,69 @@ body{
 .red{
     background-color: red;
 }
-.timer1, .timer2{
-    width: 40px;
+.timer{
+    width: 70px;
     height: 30px;
     border: 1px solid black;
+    box-shadow: 0 0 6px 2px black;
+    border-radius: 5px;
     text-align: center;
-    vertical-align: middle;
+    padding-top: 7px;
+    font-weight: 800;
+    font-style: italic;
+    font-size: 20px;
 }
 
 span{
     
+}
+.gameBox{
+    
+    display: flex;
+    justify-content: space-between;
+    width: 800px;
+    margin: 0 auto;
+    .timerBox{
+        border: 1px solid black;
+        width: 120px;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-around;
+        align-items: center;
+        .button{
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 80px;
+            width: 80px;
+            border: 1px solid black;
+            border-radius: 5px;
+            
+            
+            
+            }
+            
+            
+        }
+        .active{
+            cursor: pointer;
+            background: white;
+            box-shadow: 0 0 2px 2px black;
+            &:hover{
+                box-shadow: 0 0 6px 2px black;
+                background: #ccc;
+            }
+            &:active{
+                box-shadow: none;
+                background: #ccc;
+            }
+        
+            
+        }
+        .pressed{
+            background: #ccc;
+            box-shadow: none;
+        }
 }
 .chessboard{
     border: 1px solid @black;

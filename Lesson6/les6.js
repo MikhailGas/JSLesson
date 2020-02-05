@@ -98,6 +98,10 @@ let chess ={
     }
 };
 
+let timer1 = createElement('div', 'timer');
+let timer2 = createElement('div', 'timer');
+let button1 = createElement('div', 'button active');
+let button2 = createElement('div', 'button pressed');
 
 function createElement(elem, className){
     let element = document.createElement(elem);
@@ -110,10 +114,16 @@ function chessboard(){
     let chessboard = createElement('table', 'chessboard');
     let app = document.querySelector('#app');
     let timerBox = createElement('div', 'timerBox');
+    
+    
 
     app.after(gameBox);
     gameBox.append(chessboard);
     gameBox.append(timerBox);
+    timerBox.append(button1, timer1,timer2,button2);
+    button1.innerText = 'Игрок 1';
+    button2.innerText = 'Игрок 2';
+    
     let isWhite = true;
     for (let i = 0; i <= 9; i++){
         let chessboard__row = createElement('tr', 'chessboard__row');
@@ -161,12 +171,6 @@ chess.startPosition('black'); // цвет фигур игрока(игрок в�
 chess.redrawImg();
 
 let app = document.querySelector('#app');
-let timer1 = createElement('div');
-let timer2 = createElement('div');
-timer1.classList = 'timer1';
-timer2.classList = 'timer2';
-app.after(timer1);
-timer1.after(timer2);
 let flagCount1 = false;
 let flagCount2 = false;
 let firstPlayerTime = 300;
@@ -178,8 +182,9 @@ let isSelect = false;
 let body = document.querySelector('body');
 let selectCellPos;
 
+
 body.addEventListener('click', function(event){
-    console.log(event);
+    
     if(selectCellPos && (event.target.tagName == 'BODY' || event.target.offsetParent.tagName == 'BODY')){
         let cell = document.querySelector('.' + selectCellPos);
         cell.style.backgroundColor = 'red';
@@ -232,10 +237,14 @@ chessboard1.addEventListener('click', function(event){
 
 
 
-timer1.onclick = function(){
+button1.onclick = function(){
     if(!flagCount2){
         flagCount2 = true;
         flagCount1 = false;
+        button1.classList.add('pressed');
+        button1.classList.remove('active')
+        button2.classList.remove('pressed');
+        button2.classList.add('active');
         timerID2 = setTimeout(test, 1000);
         clearTimeout(timerID1);
     }
@@ -243,10 +252,14 @@ timer1.onclick = function(){
     
 }
 
-timer2.onclick = function(){
+button2.onclick = function(){
     if(!flagCount1){
         flagCount1 = true;
         flagCount2 = false;
+        button2.classList.add('pressed');
+        button2.classList.remove('active');
+        button1.classList.remove('pressed');
+        button1.classList.add('active');
         timerID1 = setTimeout(test, 1000);
         clearTimeout(timerID2);
     }
