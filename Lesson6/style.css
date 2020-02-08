@@ -72,7 +72,7 @@ body {
   box-shadow: none;
 }
 .chessboard {
-  border: 1px solid #000000;
+  border: 1px solid #e8a20c;
   border-collapse: collapse;
 }
 .chessboard__row {
@@ -96,10 +96,10 @@ body {
   width: 35px;
 }
 .chessboard__cell_white {
-  border: 1px solid #000000;
-  background: #ffffff;
+  background: #f2f0f0;
+  font-size: 40px;
 }
 .chessboard__cell_black {
-  border: 1px solid #000000;
-  background: #000000;
+  background: #e8a20c;
+  font-size: 40px;
 }

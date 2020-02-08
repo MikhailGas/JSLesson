@@ -1,8 +1,8 @@
 @width: 70px;
 @height: 70px;
 
-@black: #000000;
-@white: #ffffff;
+@black: #e8a20c;
+@white: #f2f0f0;
 
 @size: @width / 2;
 body{
@@ -108,6 +108,7 @@ span{
     &__cell{
         text-align: center;
         vertical-align: middle;
+        
         width: @width;
         &:first-child{
             width: @width / 2;
@@ -117,14 +118,14 @@ span{
         }
         
         &_white{
-            border: 1px solid @black;
-            background: @white;
             
+            background: @white;
+            font-size: 40px;
         }
         &_black{
-            border: 1px solid @black;
-            background: @black;
             
+            background: @black;
+            font-size: 40px;
         }
         
     }

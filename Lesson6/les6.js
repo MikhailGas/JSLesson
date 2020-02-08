@@ -7,19 +7,19 @@ let chess ={
         row: [1,2,3,4,5,6,7,8],
     },
     figurs: {
-        BlackKing:{fig: 'Кр', color: 'black', img:'king'},
-        BlackQueen:{fig: 'Ф', color: 'black', img:'queen'},
-        BlackBishop:{fig: 'С', color: 'black', img:'bishop'},
-        BlackKnight:{fig: 'К', color: 'black', img:'knight'},
-        BlackRook:{fig: 'Л', color: 'black', img:'rook'},
-        BlackPawn:{fig: 'П', color: 'black', img:'pawn'},
-        WhiteKing:{fig: 'КР', color: 'white', img:'king'},
-        WhiteQueen:{fig: 'Ф', color: 'white', img:'queen'},
-        WhiteBishop:{fig: 'С', color: 'white', img:'bishop'},
-        WhiteKnight:{fig: 'К', color: 'white', img:'knight'},
-        WhiteRook:{fig: 'Л', color: 'white', img:'rook'},
-        WhitePawn:{fig: 'П', color: 'white', img:'pawn'},
-        empty:{fig:'', color:'', img:''},
+        BlackKing:'&#9818',
+        BlackQueen:'&#9819',
+        BlackRook:'&#9820',
+        BlackBishop:'&#9821',
+        BlackKnight:'&#9822',
+        BlackPawn:'&#9823',
+        WhiteKing:'&#9812',
+        WhiteQueen:'&#9813',
+        WhiteRook:'&#9814',
+        WhiteBishop:'&#9815',
+        WhiteKnight:'&#9816',
+        WhitePawn:'&#9817',
+        empty:'',
     },
     gameField:{},
     redrawText: function(){
@@ -39,7 +39,7 @@ let chess ={
             for(let j = 1; j < 9; j++){
                 if(this.gameField['' + i + j] != 'empty'){
                     cell = document.querySelector('.pos' + i + j);
-                    cell.innerHTML = '<i class="fas fa-chess-' + this.figurs[this.gameField['' + i + j]].img + ' ' + this.figurs[this.gameField['' + i + j]].color +  '"></i>';
+                    cell.innerHTML = this.figurs[this.gameField['' + i + j]];
                 }
                 
                 
@@ -97,11 +97,25 @@ let chess ={
         }
     }
 };
-
+let time = {
+    white: 30,
+    black: 30,
+};
+let currentPlayer = 'white';
 let timer1 = createElement('div', 'timer');
 let timer2 = createElement('div', 'timer');
-let button1 = createElement('div', 'button active');
-let button2 = createElement('div', 'button pressed');
+
+let colorGamer = 'white';
+let button1, button2;
+
+if(colorGamer = 'white'){
+    button1 = createElement('div', 'button pressed');
+    button2 = createElement('div', 'button active');
+}else{
+    button1 = createElement('div', 'button active');
+    button2 = createElement('div', 'button pressed');
+}
+
 
 function createElement(elem, className){
     let element = document.createElement(elem);
@@ -164,7 +178,7 @@ function chessboard(){
 chessboard();
 
 // 2. ---------------------------------------------------
-chess.startPosition('black'); // цвет фигур игрока(игрок внизу)
+chess.startPosition(colorGamer); // цвет фигур игрока(игрок внизу)
 //chess.redrawText();
 
 // 3. ----------------------------------------------------
@@ -194,25 +208,10 @@ body.addEventListener('click', function(event){
 
 chessboard1.addEventListener('click', function(event){
     
-    if(event.target.tagName == 'I'){
-        if(!isSelect){
-            event.target.offsetParent.style.backgroundColor = 'green';
-            isSelect = !isSelect;
-            selectCellPos = event.target.offsetParent.classList[2];    
-            
-        }else{
-            if (event.target.offsetParent.style.backgroundColor == 'green' || event.target.offsetParent.style.backgroundColor == 'red'){
-                event.target.offsetParent.style.backgroundColor = '';
-                isSelect = !isSelect;
-                selectCellPos = '';
-            }
-                
-        }
-        
-    }
+   
           
-    
-    if(event.target.tagName == 'TD' && event.target.childElementCount != 0){
+    console.log(event);
+    if(event.target.tagName == 'TD' && event.target.innerText != ''){
         if(!isSelect){
             event.target.style.backgroundColor = 'green';
             isSelect = !isSelect;
@@ -238,34 +237,62 @@ chessboard1.addEventListener('click', function(event){
 
 
 button1.onclick = function(){
-    if(!flagCount2){
-        flagCount2 = true;
-        flagCount1 = false;
+    if(button1.classList[1] == 'active'){
+        if(currentPlayer == 'white') currentPlayer = 'black'
+        else currentPlayer = 'white';
         button1.classList.add('pressed');
         button1.classList.remove('active')
         button2.classList.remove('pressed');
         button2.classList.add('active');
-        timerID2 = setTimeout(test, 1000);
-        clearTimeout(timerID1);
+        if(!flagCount1) {
+            setTimeout(timer, 1000);
+            flagCount1 = true;
+        }
     }
     
     
 }
 
 button2.onclick = function(){
-    if(!flagCount1){
-        flagCount1 = true;
-        flagCount2 = false;
+    if(button2.classList[1] == 'active'){
+        if(currentPlayer == 'white') currentPlayer = 'black'
+        else currentPlayer = 'white';
         button2.classList.add('pressed');
         button2.classList.remove('active');
         button1.classList.remove('pressed');
         button1.classList.add('active');
-        timerID1 = setTimeout(test, 1000);
-        clearTimeout(timerID2);
+        if(!flagCount1) {
+            setTimeout(timer, 1000);
+            flagCount1 = true;
+        }
     }
     
     
 }
+
+// данной переменной присваивается, чей ход, это определить либо по кнопке, либо какая фигура походила (много вариатнов)
+
+function timer() {
+    time[currentPlayer]--
+
+    if (time[currentPlayer] > 0) {
+        setTimeout(timer, 1000);
+        if(colorGamer == 'white'){
+            timer1.innerText = time['black'];
+            timer2.innerText = time['white'];
+        }
+        else{
+            timer1.innerText = time['white'];
+            timer2.innerText = time['black'];
+        }
+        
+        return
+    }
+    alert(`у игрока ${currentPlayer} 30 минут прошло`);
+}
+
+
+
 
 function test(){
     if (flagCount1) {
