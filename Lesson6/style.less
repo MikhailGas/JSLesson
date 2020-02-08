@@ -1,0 +1,133 @@
+@width: 70px;
+@height: 70px;
+
+@black: #e8a20c;
+@white: #f2f0f0;
+
+@size: @width / 2;
+body{
+    height: 1500px;
+    
+    
+}
+
+.black{
+    background: white;
+    padding: 5px;
+    color:black;
+    font-weight: bold;
+    font-size: @size;
+}
+.white{
+    background: black;
+    padding: 5px;
+    color:white;
+    text-shadow: 1px 1px 1px black;
+    font-size: @size;
+}
+.red{
+    background-color: red;
+}
+.timer{
+    width: 70px;
+    height: 30px;
+    border: 1px solid black;
+    box-shadow: 0 0 6px 2px black;
+    border-radius: 5px;
+    text-align: center;
+    padding-top: 7px;
+    font-weight: 800;
+    font-style: italic;
+    font-size: 20px;
+}
+
+span{
+    
+}
+.gameBox{
+    
+    display: flex;
+    justify-content: space-between;
+    width: 800px;
+    margin: 0 auto;
+    .timerBox{
+        border: 1px solid black;
+        width: 120px;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-around;
+        align-items: center;
+        .button{
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 80px;
+            width: 80px;
+            border: 1px solid black;
+            border-radius: 5px;
+            
+            
+            
+            }
+            
+            
+        }
+        .active{
+            cursor: pointer;
+            background: white;
+            box-shadow: 0 0 2px 2px black;
+            &:hover{
+                box-shadow: 0 0 6px 2px black;
+                background: #ccc;
+            }
+            &:active{
+                box-shadow: none;
+                background: #ccc;
+            }
+        
+            
+        }
+        .pressed{
+            background: #ccc;
+            box-shadow: none;
+        }
+}
+.chessboard{
+    border: 1px solid @black;
+    border-collapse: collapse;
+    &__row{
+        height: @height;
+        &:first-child{
+            height: @height / 2;
+        }
+        &:last-child{
+            height: @height / 2;
+        }
+        
+    }
+    &__cell{
+        text-align: center;
+        vertical-align: middle;
+        
+        width: @width;
+        &:first-child{
+            width: @width / 2;
+        }
+        &:last-child{
+            width: @width / 2;
+        }
+        
+        &_white{
+            
+            background: @white;
+            font-size: 40px;
+        }
+        &_black{
+            
+            background: @black;
+            font-size: 40px;
+        }
+        
+    }
+    
+}
